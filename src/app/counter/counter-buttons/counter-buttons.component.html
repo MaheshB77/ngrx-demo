@@ -1,0 +1,23 @@
+<amexio-row>
+  <amexio-column [size]="2">
+    <amexio-button
+      [label]="'Increase'"
+      [type]="'success'"
+      (onClick)="handleIncrease()"
+    ></amexio-button>
+  </amexio-column>
+  <amexio-column [size]="2">
+    <amexio-button
+      [label]="'Decrease'"
+      [type]="'danger'"
+      (onClick)="handleDecrease()"
+    ></amexio-button>
+  </amexio-column>
+  <amexio-column [size]="2">
+    <amexio-button
+      [label]="'Reset'"
+      [type]="'primary'"
+      (onClick)="handleReset()"
+    ></amexio-button>
+  </amexio-column>
+</amexio-row>
