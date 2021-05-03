@@ -7,7 +7,11 @@
       background-color="brown"
       align="center"
     >
-      <amexio-label>{{ counter }}</amexio-label>
+      <!-- 1st way -->
+      <!-- <amexio-label>{{ counter }}</amexio-label> -->
+
+      <!-- 1nd way -->
+      <amexio-label>{{ (counter$ | async).counter }}</amexio-label>
     </amexio-box>
   </amexio-column>
 </amexio-row>
