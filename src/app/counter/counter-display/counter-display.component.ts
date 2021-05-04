@@ -20,6 +20,7 @@ export class CounterDisplayComponent implements OnInit {
   ngOnInit() {
     // 1st way
     this.store.select("counter").subscribe((data) => {
+      // This observable will be triggered whenever we 'select' any data from the store anywhere
       console.log("obseravable of counter-display called");
       this.counter = data.counter;
     });
