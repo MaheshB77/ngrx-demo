@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { decrement, increment, reset } from "../state/counter.actions";
+import {
+  changeName,
+  decrement,
+  increment,
+  reset,
+} from "../state/counter.actions";
 
 @Component({
   selector: "app-counter-buttons",
@@ -22,5 +27,9 @@ export class CounterButtonsComponent implements OnInit {
 
   handleReset() {
     this.store.dispatch(reset());
+  }
+
+  handleNameChange() {
+    this.store.dispatch(changeName());
   }
 }
