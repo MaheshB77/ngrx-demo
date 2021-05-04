@@ -12,6 +12,8 @@ import { counterReducer } from "./counter/state/counter.reducer";
 import { CustomCounterInputComponent } from "./counter/custom-counter-input/custom-counter-input.component";
 import { FormsModule } from "@angular/forms";
 import { NameDisplayComponent } from './counter/name-display/name-display.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { NameDisplayComponent } from './counter/name-display/name-display.compon
     CounterDisplayComponent,
     CustomCounterInputComponent,
     NameDisplayComponent,
+    HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
