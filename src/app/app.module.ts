@@ -9,6 +9,8 @@ import { CounterButtonsComponent } from "./counter/counter-buttons/counter-butto
 import { CounterDisplayComponent } from "./counter/counter-display/counter-display.component"; // Import Amexio library
 import { StoreModule } from "@ngrx/store";
 import { counterReducer } from "./counter/state/counter.reducer";
+import { CustomCounterInputComponent } from "./counter/custom-counter-input/custom-counter-input.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,9 +18,11 @@ import { counterReducer } from "./counter/state/counter.reducer";
     CounterComponent,
     CounterButtonsComponent,
     CounterDisplayComponent,
+    CustomCounterInputComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AmexioWidgetModule,
     StoreModule.forRoot({ counter: counterReducer }),

@@ -1,0 +1,14 @@
+<amexio-row>
+  <amexio-column [size]="6">
+    <amexio-text-input
+      field-label="Custom counter value"
+      name="customCounter"
+      placeholder="Enter custom counter"
+      [(ngModel)]="customCounterValue"
+    ></amexio-text-input>
+    <amexio-button
+      [label]="'Add custom value'"
+      (onClick)="onCustomCounterAdd()"
+    ></amexio-button>
+  </amexio-column>
+</amexio-row>
