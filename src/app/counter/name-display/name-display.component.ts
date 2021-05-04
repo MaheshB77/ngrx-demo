@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { getName } from "../state/counter.selectors";
 import { CounterState } from "../state/counter.state";
 
@@ -9,15 +10,11 @@ import { CounterState } from "../state/counter.state";
   styleUrls: ["./name-display.component.css"],
 })
 export class NameDisplayComponent implements OnInit {
-  name: string;
+  name$: Observable<string>;
 
   constructor(private store: Store<{ counter: CounterState }>) {}
 
   ngOnInit() {
-    // used the selector
-    this.store.select(getName).subscribe((name) => {
-      console.log("obseravable of name-display called");
-      this.name = name;
-    });
+    this.name$ = this.store.select(getName);
   }
 }
