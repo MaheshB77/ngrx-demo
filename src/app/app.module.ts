@@ -16,6 +16,8 @@ import { NameDisplayComponent } from "./counter/name-display/name-display.compon
 import { HomeComponent } from "./home/home.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { environment } from "src/environments/environment";
+import { PostListComponent } from "./posts/post-list/post-list.component";
+import { appReducer } from "./store/app.state";
 
 @NgModule({
   declarations: [
@@ -27,13 +29,14 @@ import { environment } from "src/environments/environment";
     NameDisplayComponent,
     HomeComponent,
     HeaderComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     AmexioWidgetModule,
-    StoreModule.forRoot({ counter: counterReducer }),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
