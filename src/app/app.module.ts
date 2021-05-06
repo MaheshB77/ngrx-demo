@@ -11,13 +11,14 @@ import { CounterDisplayComponent } from "./counter/counter-display/counter-displ
 import { StoreModule } from "@ngrx/store";
 import { counterReducer } from "./counter/state/counter.reducer";
 import { CustomCounterInputComponent } from "./counter/custom-counter-input/custom-counter-input.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NameDisplayComponent } from "./counter/name-display/name-display.component";
 import { HomeComponent } from "./home/home.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { environment } from "src/environments/environment";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { appReducer } from "./store/app.state";
+import { AddPostComponent } from './posts/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +31,12 @@ import { appReducer } from "./store/app.state";
     HomeComponent,
     HeaderComponent,
     PostListComponent,
+    AddPostComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AmexioWidgetModule,
     StoreModule.forRoot(appReducer),
