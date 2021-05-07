@@ -12,7 +12,7 @@ export const initialState: PostState = {
       description: "Demo Description 1",
     },
     {
-      id: "1",
+      id: "2",
       title: "Demo title 2",
       description: "Demo Description 2",
     },

@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Store } from "@ngrx/store";
+import { Post } from "src/app/models/post.model";
+import { AppState } from "src/app/store/app.state";
+import { addPost } from "../state/post.actions";
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
   selector: "app-add-post",
@@ -9,7 +14,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class AddPostComponent implements OnInit {
   postForm: FormGroup;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.postForm = new FormGroup({
@@ -25,7 +30,15 @@ export class AddPostComponent implements OnInit {
   }
 
   onAddPost() {
-    console.log(this.postForm.value);
+    const post: Post = {
+      id: uuidv4(),
+      title: this.postForm.value.title,
+      description: this.postForm.value.description,
+    };
+
+    this.store.dispatch(addPost({ post }));
+
+    this.postForm.reset();
   }
 
   getTitleErrorMsg() {

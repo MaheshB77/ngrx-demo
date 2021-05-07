@@ -21,7 +21,13 @@
       </div>
 
       <div class="my-3">
-        <button class="btn btn-primary" type="submit">Add</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+          Add
+        </button>
       </div>
     </form>
   </div>
