@@ -20,6 +20,7 @@
           <td>{{ post.description }}</td>
           <td>
             <a class="btn btn-primary" [routerLink]="['edit', post.id]">Edit</a>
+            <button class="btn btn-danger" (click)="onDelete(post.id)">Delete</button>
           </td>
         </tr>
       </tbody>
