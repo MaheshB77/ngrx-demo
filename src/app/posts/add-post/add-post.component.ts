@@ -30,6 +30,10 @@ export class AddPostComponent implements OnInit {
   }
 
   onAddPost() {
+    if (!this.postForm.valid) {
+      return;
+    }
+
     const post: Post = {
       id: uuidv4(),
       title: this.postForm.value.title,

@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Post } from "src/app/models/post.model";
 import { AppState } from "src/app/store/app.state";
+import { editPost } from "../state/post.actions";
 import { getPostById } from "../state/post.selectors";
 
 @Component({
@@ -40,7 +41,19 @@ export class EditPostComponent implements OnInit {
     });
   }
 
-  onEditPost() {}
+  onEditPost() {
+    if (!this.postEditForm.valid) {
+      return;
+    }
+
+    const editedPost: Post = {
+      id: this.post.id,
+      description: this.postEditForm.value.description,
+      title: this.postEditForm.value.title,
+    };
+
+    this.store.dispatch(editPost({ post: editedPost }));
+  }
 
   getTitleErrorMsg() {
     let title = this.postEditForm.get("title");
