@@ -5,6 +5,6 @@ export const loginStart = createAction(
   props<{ email: string; password: string }>()
 );
 
-export const loginEnd = createAction("loginEnd");
+export const loginSuccess = createAction("loginSuccess");
 
 export const loginFailed = createAction("loginFailed");
