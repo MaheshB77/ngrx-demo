@@ -23,7 +23,13 @@
         {{ passwordErrorMsgs() }}
       </div>
       <div class="mb-3">
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
       </div>
 
       <div class="spinner-border" role="status" *ngIf="isLoading">
