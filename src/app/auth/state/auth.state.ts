@@ -1,3 +1,9 @@
-export interface AuthSate{}
+import { User } from "src/app/models/user.model";
 
-export const initialState = {}
+export interface AuthSate {
+  user: User | null;
+}
+
+export const initialState: AuthSate = {
+  user: null,
+};
