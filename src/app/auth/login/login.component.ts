@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
+import { changeLoading } from "src/app/store/shared/shared.actions";
+import { getLoadingStatus } from "src/app/store/shared/shared.selectors";
 import { loginStart } from "../state/auth.actions";
 
 @Component({
@@ -11,6 +13,7 @@ import { loginStart } from "../state/auth.actions";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isLoading = false;
 
   constructor(private store: Store<AppState>) {}
 
@@ -48,6 +51,11 @@ export class LoginComponent implements OnInit {
   onLogin() {
     let email = this.loginForm.value.email;
     let password = this.loginForm.value.password;
+
+    this.store.dispatch(changeLoading({ status: true }));
+    this.store.select(getLoadingStatus).subscribe((status) => {
+      this.isLoading = status;
+    });
 
     this.store.dispatch(loginStart({ email, password }));
   }
