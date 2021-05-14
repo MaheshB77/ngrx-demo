@@ -4,3 +4,8 @@ export const changeLoading = createAction(
   "changeLoading",
   props<{ status: boolean }>()
 );
+
+export const setErrorMessage = createAction(
+  "setErrorMessage",
+  props<{ message: string }>()
+);

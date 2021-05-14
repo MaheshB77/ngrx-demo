@@ -32,8 +32,18 @@
         </button>
       </div>
 
+      <!-- Loading spinner -->
       <div class="spinner-border" role="status" *ngIf="isLoading">
         <span class="sr-only">Loading...</span>
+      </div>
+
+      <!-- Login error message -->
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="errorMessage$ | async as error"
+      >
+        {{ error }}
       </div>
     </form>
   </div>

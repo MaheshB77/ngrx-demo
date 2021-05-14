@@ -1,11 +1,15 @@
 import { Injectable } from "@angular/core";
-import { exhaustMap, map } from "rxjs/operators";
+import { catchError, exhaustMap, map } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { loginStart, loginSuccess } from "./auth.actions";
 import { AuthService } from "src/app/services/auth.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
-import { changeLoading } from "src/app/store/shared/shared.actions";
+import {
+  changeLoading,
+  setErrorMessage,
+} from "src/app/store/shared/shared.actions";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -25,7 +29,15 @@ export class AuthEffects {
           map((data) => {
             const user = this.authService.userFromLoginResponse(data);
             this.store.dispatch(changeLoading({ status: false }));
+            this.store.dispatch(setErrorMessage({ message: "" }));
+
             return loginSuccess({ user: user });
+          }),
+          catchError((errorResponse) => {
+            this.store.dispatch(changeLoading({ status: false }));
+            let errorMessage = errorResponse.error.error.message; //Based on firebase response format
+
+            return of(setErrorMessage({ message: errorMessage }));
           })
         );
       })
