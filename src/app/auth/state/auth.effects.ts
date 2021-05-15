@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { catchError, exhaustMap, map } from "rxjs/operators";
+import { catchError, exhaustMap, map, tap } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { loginStart, loginSuccess } from "./auth.actions";
 import { AuthService } from "src/app/services/auth.service";
@@ -10,6 +10,7 @@ import {
   setErrorMessage,
 } from "src/app/store/shared/shared.actions";
 import { of } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
@@ -18,9 +19,13 @@ export class AuthEffects {
   constructor(
     private action$: Actions,
     private authService: AuthService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
+  /**
+   * This effect will be triggered after despatching the 'loginStart' action
+   */
   login$ = createEffect(() => {
     return this.action$.pipe(
       ofType(loginStart),
@@ -43,4 +48,19 @@ export class AuthEffects {
       })
     );
   });
+
+  /**
+   * Navigate to home after 'loginSuccess' action
+   */
+  loginRedirect$ = createEffect(
+    () => {
+      return this.action$.pipe(
+        ofType(loginSuccess),
+        tap((action) => {
+          this.router.navigate(["/"]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }
