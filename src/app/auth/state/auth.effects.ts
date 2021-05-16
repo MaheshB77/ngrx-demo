@@ -29,7 +29,7 @@ export class AuthEffects {
   ) {}
 
   /**
-   * This effect will be triggered after despatching the 'loginStart' action
+   * This effect will be triggered after dispatching the 'loginStart' action
    */
   login$ = createEffect(() => {
     return this.action$.pipe(
@@ -69,6 +69,9 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  /**
+   * This effect will be triggered after dispatching the 'signUpStart' action
+   */
   signUp$ = createEffect(() => {
     return this.action$.pipe(
       ofType(signUpStart),
