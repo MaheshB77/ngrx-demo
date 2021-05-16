@@ -60,7 +60,7 @@ export class AuthEffects {
   loginRedirect$ = createEffect(
     () => {
       return this.action$.pipe(
-        ofType(loginSuccess),
+        ofType(loginSuccess, signUpSuccess),
         tap((action) => {
           this.router.navigate(["/"]);
         })
@@ -94,19 +94,4 @@ export class AuthEffects {
       })
     );
   });
-
-  /**
-   * Navigate to home after 'signUpSuccess'
-   */
-  signUpRedirect$ = createEffect(
-    () => {
-      return this.action$.pipe(
-        ofType(signUpSuccess),
-        tap((action) => {
-          this.router.navigate(["/"]);
-        })
-      );
-    },
-    { dispatch: false }
-  );
 }
