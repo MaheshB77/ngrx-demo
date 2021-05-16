@@ -1,7 +1,12 @@
 import { Injectable } from "@angular/core";
 import { catchError, exhaustMap, map, tap } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { loginStart, loginSuccess } from "./auth.actions";
+import {
+  loginStart,
+  loginSuccess,
+  signUpStart,
+  signUpSuccess,
+} from "./auth.actions";
 import { AuthService } from "src/app/services/auth.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
@@ -63,4 +68,27 @@ export class AuthEffects {
     },
     { dispatch: false }
   );
+
+  signUp$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(signUpStart),
+      exhaustMap((action) => {
+        return this.authService.signUp(action.email, action.password).pipe(
+          map((data) => {
+            const user = this.authService.userFromLoginResponse(data);
+            this.store.dispatch(changeLoading({ status: false }));
+            this.store.dispatch(setErrorMessage({ message: "" }));
+
+            return signUpSuccess({ user: user });
+          }),
+          catchError((errorResponse) => {
+            this.store.dispatch(changeLoading({ status: false }));
+            let errorMessage = errorResponse.error.error.message; //Based on firebase response format
+
+            return of(setErrorMessage({ message: errorMessage }));
+          })
+        );
+      })
+    );
+  });
 }

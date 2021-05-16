@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { AppState } from "src/app/store/app.state";
+import { changeLoading } from "src/app/store/shared/shared.actions";
+import {
+  getErrorMessage,
+  getLoadingStatus,
+} from "src/app/store/shared/shared.selectors";
 import { signUpStart } from "../state/auth.actions";
 
 @Component({
@@ -11,6 +17,8 @@ import { signUpStart } from "../state/auth.actions";
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
+  isLoading$: Observable<boolean>;
+  errorMessage$: Observable<string>;
 
   constructor(private store: Store<AppState>) {}
 
@@ -19,6 +27,9 @@ export class SignupComponent implements OnInit {
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required]),
     });
+
+    this.isLoading$ = this.store.select(getLoadingStatus);
+    this.errorMessage$ = this.store.select(getErrorMessage);
   }
 
   onSignUP() {
@@ -29,6 +40,7 @@ export class SignupComponent implements OnInit {
     let email = this.signUpForm.value.email;
     let password = this.signUpForm.value.password;
 
+    this.store.dispatch(changeLoading({ status: true }));
     this.store.dispatch(signUpStart({ email, password }));
   }
 
