@@ -11,4 +11,12 @@ export const loginSuccess = createAction(
   props<{ user: User }>()
 );
 
-export const loginFailed = createAction("loginFailed");
+export const signUpStart = createAction(
+  "signUpStart",
+  props<{ email: string; password: string }>()
+);
+
+export const signUpSuccess = createAction(
+  "signUpSuccess",
+  props<{ user: User }>()
+);

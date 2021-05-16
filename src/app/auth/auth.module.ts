@@ -8,16 +8,21 @@ import { LoginComponent } from "./login/login.component";
 import { AuthEffects } from "./state/auth.effects";
 import { authReducer } from "./state/auth.reducer";
 import { AUTH_STATE_NAME } from "./state/auth.selectors";
+import { SignupComponent } from "./signup/signup.component";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "login",
     component: LoginComponent,
+  },
+  {
+    path: "signup",
+    component: SignupComponent,
   },
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignupComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
