@@ -94,4 +94,19 @@ export class AuthEffects {
       })
     );
   });
+
+  /**
+   * Navigate to home after 'signUpSuccess'
+   */
+  signUpRedirect$ = createEffect(
+    () => {
+      return this.action$.pipe(
+        ofType(signUpSuccess),
+        tap((action) => {
+          this.router.navigate(["/"]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }
