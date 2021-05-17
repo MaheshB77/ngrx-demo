@@ -20,3 +20,9 @@ export const signUpSuccess = createAction(
   "signUpSuccess",
   props<{ user: User }>()
 );
+
+// This action is helpful for autoLogin (persisting user after refresh)
+export const setUserAfterRefresh = createAction(
+  "setUserAfterRefresh",
+  props<{ user: User }>()
+);

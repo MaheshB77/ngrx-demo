@@ -16,6 +16,7 @@ import {
 } from "src/app/store/shared/shared.actions";
 import { of } from "rxjs";
 import { Router } from "@angular/router";
+import { UserService } from "src/app/services/user.service";
 
 @Injectable({
   providedIn: "root",
@@ -25,7 +26,8 @@ export class AuthEffects {
     private action$: Actions,
     private authService: AuthService,
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   /**
@@ -40,6 +42,9 @@ export class AuthEffects {
             const user = this.authService.userFromLoginResponse(data);
             this.store.dispatch(changeLoading({ status: false }));
             this.store.dispatch(setErrorMessage({ message: "" }));
+
+            // Store user to local storage
+            this.userService.setUserToLocalStorage(user);
 
             return loginSuccess({ user: user });
           }),
@@ -81,6 +86,9 @@ export class AuthEffects {
             const user = this.authService.userFromLoginResponse(data);
             this.store.dispatch(changeLoading({ status: false }));
             this.store.dispatch(setErrorMessage({ message: "" }));
+
+            // Store user to local storage
+            this.userService.setUserToLocalStorage(user);
 
             return signUpSuccess({ user: user });
           }),
