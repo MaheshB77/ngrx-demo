@@ -26,3 +26,5 @@ export const setUserAfterRefresh = createAction(
   "setUserAfterRefresh",
   props<{ user: User }>()
 );
+
+export const logout = createAction("logout");

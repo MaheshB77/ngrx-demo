@@ -18,4 +18,8 @@ export class UserService {
     }
     return null;
   }
+
+  removeUserFromLocalStorage() {
+    localStorage.removeItem("user");
+  }
 }
