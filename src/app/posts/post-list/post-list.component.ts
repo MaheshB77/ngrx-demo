@@ -3,7 +3,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Post } from "src/app/models/post.model";
 import { AppState } from "src/app/store/app.state";
-import { deletePost } from "../state/post.actions";
+import { deletePost, getPostsFromBackend } from "../state/post.actions";
 import { getPosts } from "../state/post.selectors";
 
 @Component({
@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.store.dispatch(getPostsFromBackend());
     this.posts$ = this.store.select(getPosts);
   }
 
