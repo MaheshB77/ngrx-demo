@@ -35,7 +35,7 @@ export class AddPostComponent implements OnInit {
     }
 
     const post: Post = {
-      id: uuidv4(),
+      // id: uuidv4(),  // We will get id from the firebase
       title: this.postForm.value.title,
       description: this.postForm.value.description,
     };

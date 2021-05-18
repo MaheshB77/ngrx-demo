@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { exhaustMap, map } from "rxjs/operators";
+import { Post } from "src/app/models/post.model";
 import { PostsService } from "src/app/services/posts.service";
-import { getPostsFromBackend, loadPosts } from "./post.actions";
+import { addPost, addPostSuccess, getPostsFromBackend, loadPosts } from "./post.actions";
 
 @Injectable({
   providedIn: "root",
@@ -22,4 +23,20 @@ export class PostEffects {
       })
     );
   });
+
+  addPost$ = createEffect(
+    () => {
+      return this.action$.pipe(
+        ofType(addPost),
+        exhaustMap((action) => {
+          return this.postsService.addPost(action.post).pipe(
+            map((data) => {
+              let post: Post = { ...action.post, id: data.name }
+              return addPostSuccess({post});
+            })
+          );
+        })
+      );
+    }
+  );
 }

@@ -40,4 +40,12 @@ export class PostsService {
       })
     );
   }
+
+  /**
+   * Add Post to firebase realtime database
+   * Response : { name: "-Ma0l-XXGQWa2DZXsy_T" }
+   */
+  addPost(post: Post): Observable<{ name: string }> {
+    return this.http.post<{ name: string }>(urls.addPostToBackend, post);
+  }
 }
