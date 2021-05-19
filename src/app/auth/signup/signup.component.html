@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <h3 class="text-center my-3">Signup Form</h3>
+    <hr />
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUP()">
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email" />
+        {{ emailErrorMsgs() }}
+      </div>
+
+      <div class="mb-3">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        {{ passwordErrorMsgs() }}
+      </div>
+
+      <div class="mb-3">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!signUpForm.valid"
+        >
+          Signup
+        </button>
+      </div>
+    </form>
+
+    <!-- Loading spinner -->
+    <div class="spinner-border" role="status" *ngIf="isLoading$ | async">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+
+      <!-- Signup error message -->
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="errorMessage$ | async as error"
+      >
+        {{ error }}
+      </div>
+  </div>
+</div>

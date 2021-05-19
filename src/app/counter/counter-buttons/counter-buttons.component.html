@@ -1,23 +1,28 @@
 <amexio-row>
-  <amexio-column [size]="2">
+  <amexio-column size="6" fit="false">
     <amexio-button
       [label]="'Increase'"
       [type]="'success'"
       (onClick)="handleIncrease()"
     ></amexio-button>
-  </amexio-column>
-  <amexio-column [size]="2">
+
     <amexio-button
       [label]="'Decrease'"
       [type]="'danger'"
       (onClick)="handleDecrease()"
     ></amexio-button>
-  </amexio-column>
-  <amexio-column [size]="2">
+
     <amexio-button
       [label]="'Reset'"
       [type]="'primary'"
       (onClick)="handleReset()"
     ></amexio-button>
+
+    <amexio-button
+      [label]="'Change name'"
+      [type]="'warning'"
+      (onClick)="handleNameChange()"
+    >
+    </amexio-button>
   </amexio-column>
 </amexio-row>
