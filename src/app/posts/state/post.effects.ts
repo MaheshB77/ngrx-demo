@@ -6,6 +6,8 @@ import { PostsService } from "src/app/services/posts.service";
 import {
   addPost,
   addPostSuccess,
+  deletePost,
+  deletePostSuccess,
   editPost,
   editPostSuccess,
   getPostsFromBackend,
@@ -56,5 +58,18 @@ export class PostEffects {
         );
       })
     );
+  });
+
+  deletePost$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(deletePost),
+      exhaustMap((action) => {
+        return this.postsService.deletePost(action.id).pipe(
+          map(() => {
+            return deletePostSuccess({ id: action.id });
+          })
+        )
+      })
+    )
   });
 }

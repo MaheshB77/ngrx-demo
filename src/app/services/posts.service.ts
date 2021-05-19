@@ -61,4 +61,13 @@ export class PostsService {
 
     return this.http.patch<Post>(url, post);
   }
+
+  /**
+   * Delete post
+   */
+  deletePost(id: string) {
+    let url: string = urls.deletePost + id + ".json";
+    
+    return this.http.delete(url);
+  }
 }

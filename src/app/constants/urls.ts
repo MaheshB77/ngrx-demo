@@ -10,5 +10,6 @@ export const urls = {
   signUpWithEmailPassword: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.FIREBASE_API_KEY}`,
   getPostsFromBackend: `https://ngrx-demo-16e79-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json`,
   addPostToBackend: `https://ngrx-demo-16e79-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json`,
-  editPost: `https://ngrx-demo-16e79-default-rtdb.asia-southeast1.firebasedatabase.app/posts/`
+  editPost: `https://ngrx-demo-16e79-default-rtdb.asia-southeast1.firebasedatabase.app/posts/`,
+  deletePost: `https://ngrx-demo-16e79-default-rtdb.asia-southeast1.firebasedatabase.app/posts/`
 };
