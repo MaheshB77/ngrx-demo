@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { urls } from "../constants/urls";
 import { Post } from "../models/post.model";
+import { User } from "../models/user.model";
 
 @Injectable({
   providedIn: "root",
@@ -47,5 +48,17 @@ export class PostsService {
    */
   addPost(post: Post): Observable<{ name: string }> {
     return this.http.post<{ name: string }>(urls.addPostToBackend, post);
+  }
+
+  /**
+   * Edit (Update) post
+   * Response : {id: "-Ma0myfg75wkVF9aXqkk", description: "demo post 2 edited", title: "demo post 2 edited"}
+   */
+  editPost(post: Post): Observable<Post>{
+    // Request modified is according to firebase API
+    // For more info, refer https://firebase.google.com/docs/reference/rest/database#section-patch
+    let url: string = urls.editPost + post.id + "/.json";
+
+    return this.http.patch<Post>(url, post);
   }
 }

@@ -7,6 +7,8 @@ export const addPostSuccess = createAction("addPostSuccess", props<{ post: Post 
 
 export const editPost = createAction("editPost", props<{ post: Post }>());
 
+export const editPostSuccess = createAction("editPostSuccess", props<{ post: Post }>());
+
 export const deletePost = createAction("deletePost", props<{ id: string }>());
 
 export const getPostsFromBackend = createAction("getPostsFromBackend");
